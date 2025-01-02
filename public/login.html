@@ -24,7 +24,7 @@
 			<input type="password" name="password" placeholder="..." />
 		</div>
 
-		<input type="submit" value="Login" />
+		<input type="submit" id="action-btn" value="Login" />
 		<div class="other-options">
 			<!-- <a href="/forget-password"> Forget Password </a> -->
 			<p> You don't have an account ? 
@@ -41,6 +41,14 @@
 	</form>
 
 	<script>
+		document.getElementById('form').addEventListener('htmx:beforeRequest', (event) => {
+		    document.getElementById('action-btn').disabled = true;
+		    document.getElementById('action-btn').style = "background-color: darkgray; border: none; color: white; cursor: none;"
+		});
+
+		document.getElementById('action-btn').addEventListener('htmx:afterRequest', (event) => {
+		    event.target.disabled = false;
+		});
 	  // Trigger the initial load
 
   	// const responseDiv = document.getElementById("response")

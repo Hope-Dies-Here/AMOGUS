@@ -9,7 +9,7 @@
 
 ## Key Features: 
 
-1. User Authentication: Secure user login with a custom password encryption method (no external modules used).
+1. User Authentication: Secure user login with a **custom password encryption** method (no external modules used).
 2. Database Integration: Utilizes Mongoose for interacting with a MongoDB database to store user data.
 3. Htmx Interactions: Provides a dynamic user experience with seamless client-side updates.
 4. JWT Authentication: Implements JSON Web Tokens for secure session management.

@@ -6,6 +6,7 @@ const { check, validationResult } = require("express-validator")
 
 const { encrypt, decrypt } = require("../middlewares/mycrypt.js")
 const verifyToken = require("../middlewares/verifyToken.js")
+const checkAuth = require("../middlewares/checkAuth.js")
 const { register, login } = require("../views/auth.js")
 const { dashboardTemplate } = require("../views/dashboard.js")
 const User = require("../models/User.js")
@@ -52,15 +53,25 @@ router.get("/request", verifyToken, (req, res) => {
 })
 
 router.get("/login", (req, res) => { 
+	try {
+		
+	} catch(e) {
+		// statements
+		console.log(e);
+	}
+	const token = req.headers.cookie.split('; jwt=').pop()
+	jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+			if(user) {
+				req.user = user
+			}
+		})
 
-	// check for authentication and redirect ro dashboard if there is one
-	if(req.session.user) {
-		// use <redirect> when the statement is running before any html file is loaded
+	if(req.user) {
 		return res.redirect("/")
 	}
 
-	// res.send(login())
 	res.sendFile(path.join(__dirname, '../public/login.html'))
+	// res.send(login())
 })
 
 router.post("/login", [
@@ -77,7 +88,7 @@ router.post("/login", [
 	async (req, res) => {
 		const errors = validationResult(req)
 		if(!errors.isEmpty) {
-			console.log(errors)
+
 			const errMsg = `${errors.errors.map(err => `<p> ${err.msg} </p>`).join('')}`
 
 			return res.send(errMsg)
