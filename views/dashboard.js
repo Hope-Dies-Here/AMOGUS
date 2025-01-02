@@ -1,4 +1,4 @@
-const dashboardTemplate = () => {
+const dashboardTemplate = (user) => {
 	return (`
 		
 		<h1 class="choose-char"> Super Secret Service (SSS) </h1>
@@ -33,7 +33,7 @@ const dashboardTemplate = () => {
 		Logout
 	</button>
 	<div id="amogus">
-		Amogus
+		Amogus <span style="font-size: .75rem">(${ user.name })</span>
 	</div>
 
 		<script>

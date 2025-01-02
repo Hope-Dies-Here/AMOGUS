@@ -27,16 +27,14 @@ router.get("/", verifyToken, (req, res) => {
 
 router.get("/dashboard", verifyToken, (req, res) => {
 	try {
-		setTimeout(() => {
-			res.send(dashboardTemplate())
-		}, 0)
+		res.send(dashboardTemplate(req.user))
 	} catch(e) {
 		console.log(e);
 		res.status(500).json({ error: "Server Error" })
 	}
 })
 
-router.get("/request", (req, res) => {
+router.get("/request", verifyToken, (req, res) => {
 	const images = [ 
 		{ name: 'Goblin', src: 'green1.png' }, 
 		{ name: 'Doctor', src: 'blue.png' }, 
@@ -48,17 +46,18 @@ router.get("/request", (req, res) => {
 	const randomImage = images[Math.floor(Math.random() * images.length)]
 	res.send(`<div class="character">
 							<img src="/img/${randomImage.src}" />
-							<p> ${randomImage.name} </p>
+							<p style="margin-botom: 0;"> ${randomImage.name} </p>
+							<sub style="font-size: .7em; margin-top: 0;"> For ${ req.user.username } </sub>
 						</div>`)
 })
 
 router.get("/login", (req, res) => { 
 
 	// check for authentication and redirect ro dashboard if there is one
-	// if(req.session.user) {
-	// 	// use <redirect> when the statement is running before any html file is loaded
-	// 	return res.redirect("/")
-	// }
+	if(req.session.user) {
+		// use <redirect> when the statement is running before any html file is loaded
+		return res.redirect("/")
+	}
 
 	// res.send(login())
 	res.sendFile(path.join(__dirname, '../public/login.html'))
@@ -76,9 +75,9 @@ router.post("/login", [
 		.escape()
 	], 
 	async (req, res) => {
-		console.log("beyene")
 		const errors = validationResult(req)
 		if(!errors.isEmpty) {
+			console.log(errors)
 			const errMsg = `${errors.errors.map(err => `<p> ${err.msg} </p>`).join('')}`
 
 			return res.send(errMsg)
@@ -108,9 +107,7 @@ router.post("/login", [
 			return res.end()
 		}
 
-		setTimeout(() => {
-			res.send(`<p> Wrong Input, Try Again! </p>`)
-		}, 100)
+		res.send(`<p> Wrong Input, Try Again! </p>`)
 })
 
 router.get("/register", (req, res) => {

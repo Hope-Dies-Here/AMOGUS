@@ -13,8 +13,8 @@ const verifyToken = (req, res, next) => {
 				console.log("expired")
 				return res.redirect('/login')
 			}
-
-			req.user = user
+			console.log(user)
+			req.user = user.user
 			next()
 		})
 	} catch(e) {

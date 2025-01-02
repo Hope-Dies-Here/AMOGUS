@@ -23,8 +23,8 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
-    maxAge: 1000 * 60 * 60,
-  },
+    	maxAge: 1000 * 60 * 60,
+  	},
 	store: new MongoStore({ uri: process.env.DB_STRING, ttl: 1000 * 60 * 60, autoRemove: 'native' })
 }))
 
