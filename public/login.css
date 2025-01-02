@@ -1,0 +1,120 @@
+:root {
+	--black: #000000;
+	--secondary: #14213d;
+	--yellow: #fca311;
+	--gray: #e5e5e5;
+	--white: #ffffff;
+	--purple: #CC2458;
+	--darkpurple: #820C46;
+	--orange: #FF9A00;
+	--darkorange: #FF7300 ;
+	--darkglass: #4C8FB9;
+	--glass: #7CB8DC;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100svh;	
+	background-image: url('/img/amogus-min.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+
+.login-form {
+	display: grid;
+	gap: 1rem;
+	padding: 1rem;
+	background-color: var(--darkorange);
+	border-radius: .4rem;
+	width: 18rem;
+	box-shadow: 0px 0px 115px rgba(255, 255, 255, .15);
+}
+
+.login-form > div {
+	display: grid;
+	gap: .25rem;
+}
+
+.login-form .form-title {
+	font-weight: bold;
+	color: var(--secondary);
+	color: ;
+}
+
+.login-form input {
+	font-family: inherit;
+	padding: .618rem .5rem;
+	border-radius: .2rem;
+	background-color: var(--gray);
+	border: 1px solid var(--gray);
+	box-shadow: inset 1px 1px 10px rgba(0, 0, 0, .1);
+}
+
+.login-form input[type=submit] {
+	background-color: var(--darkpurple);
+/*	background-color: var(--secondary);*/
+	color: var(--white);
+	font-weight: bold;
+	border: 1px solid var(--darkpurple);
+	cursor: pointer;
+}
+
+.login-form label {
+	color: var(--secondary);
+	font-weight: bolder;
+}
+
+.other-options {
+	text-align: end;
+	font-size: .8rem;
+}
+.other-options button {
+  	background-color: var(--darkorange);
+  	border: none;
+  	color: var(--secondary);
+  	font-weight: bold;
+  	text-decoration: underline;
+  	cursor: pointer;
+  }
+
+.error-msg {
+	position: absolute;
+	top: 2%;
+	transform: translateX(-50%);
+	left: 50%;
+}
+
+.error-msg p{
+	background-color: white;
+	color: red;
+	border: 1px solid white;
+	font-weight: thin;
+	font-size: .9em;
+	padding: .4rem 0;
+	border-radius: .2rem;
+	margin-block: .5rem;
+	text-align: center;
+	width: 12rem;
+}
+#lol {
+            display: none; /* Hide by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+#response{
+	background-color: white;
+	width: 20rem;
+	margin: auto;
+}
