@@ -11,7 +11,7 @@ const verifyToken = (req, res, next) => {
 		jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
 			if(err) {
 				console.log("expired")
-				return res.redirect('/login')
+				return res.redirect("/login")
 			}
 			req.user = user.user
 			next()

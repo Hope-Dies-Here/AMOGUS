@@ -35,7 +35,17 @@ router.get("/dashboard", verifyToken, (req, res) => {
 	}
 })
 
-router.get("/request", verifyToken, (req, res) => {
+router.get("/request", (req, res) => {
+	const token = req.headers.cookie.split('; jwt=').pop()
+	jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+			if(user) {
+				req.user = user.user
+			}
+		})
+
+	if(!req.user) {
+		return res.send("<p class='expire'> Session Expired Please Login Again </p>")
+	}
 	const images = [ 
 		{ name: 'Goblin', src: 'green1.png' }, 
 		{ name: 'Doctor', src: 'blue.png' }, 
@@ -106,7 +116,7 @@ router.post("/login", [
 			// setHeader because htmx adds dashboard file to login when redirect is used
 			// we can't use redirect because login page is already loaded and we are excuting code inside it.
 			const payload = { name: user.name, username: user.username }
-			const token = jwt.sign({ user: payload }, process.env.JWT_SECRET, { expiresIn: "1hr" })
+			const token = jwt.sign({ user: payload }, process.env.JWT_SECRET, { expiresIn: "24hr" })
 			res.cookie("jwt", token, {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
