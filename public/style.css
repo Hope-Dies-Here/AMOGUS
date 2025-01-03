@@ -49,11 +49,11 @@ body {
 .characters {
 	margin-block: 1rem;
 	width: fit-content;
-	margin-inline: auto;
+/*	margin-inline: auto;*/
 	gap: 1rem;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	justify-content: start;
 }
 .character {
 	padding: 1rem;
@@ -143,5 +143,5 @@ body {
 }
 
 .expire {
-	
+
 }
