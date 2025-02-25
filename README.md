@@ -18,12 +18,12 @@
 
 1. Clone this repository:
 	```bash
-	git clone https://github.com/Hope-Dies-Here/PRODIGY_FS_01.git
+	git clone https://github.com/Hope-Dies-Here/AMOGUS.git
 	```
 
 2. Install dependencies:
 	```bash
-	cd PRODIGY_FS_01
+	cd AMOGUS
 	npm install
 	```
 
